@@ -19,7 +19,28 @@ def insert_user(nome, idade):
             cursor.close()
             conection.close()
 
-nome = "João"
-idade = 22
+def search():
 
-insert_user(nome, idade)
+    conection = log()
+
+    if conection:
+
+        try:
+            cursor = conection.cursor()
+
+            sql = "SELECT * FROM usuarios"
+
+            cursor.execute(sql)
+            #conection.commit()
+
+            rows = cursor.fetchall()
+
+            print(f" \n {rows} \n")
+
+        except Exception as e:
+            print(f"\n Erro ao buscar \nErro: {e} ")
+        finally:
+            cursor.close()
+            conection.close()
+
+search()
